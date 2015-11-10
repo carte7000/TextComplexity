@@ -2,10 +2,10 @@ package org.ift7022.tp3.texts;
 
 import java.util.StringTokenizer;
 
-import org.ift7022.tp3.ngrams.NgramCounter;
 import org.ift7022.tp3.ngrams.TopNgramContainer;
 
 public class Text {
+	private static final int MAX_RANK = 5000;
 	private NgramCounter ngramRepository = null;
 	private String text = null;
 	private int maxRank = 0;
@@ -42,9 +42,9 @@ public class Text {
 	}
 
 	private void updateMaxRank(String word) {
-		if(maxRank < 5000){
+		if(maxRank < MAX_RANK){
 			if(!TopNgramContainer.getInstance().isTopWord(word)){
-				maxRank = 5000;
+				maxRank = MAX_RANK;
 			}
 			else{
 				int wordRank = TopNgramContainer.getInstance().getRank(word);

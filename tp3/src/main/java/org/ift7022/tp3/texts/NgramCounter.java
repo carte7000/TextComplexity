@@ -1,4 +1,6 @@
-package org.ift7022.tp3.ngrams;
+package org.ift7022.tp3.texts;
+
+import org.ift7022.tp3.ngrams.Ngram;
 
 public interface NgramCounter {
 	public void persist(String word);

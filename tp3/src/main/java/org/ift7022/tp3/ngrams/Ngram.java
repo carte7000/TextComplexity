@@ -5,7 +5,6 @@ public class Ngram {
 	private String value;
 	private int count;
 	private int totalCount;
-	
 	public Ngram(String value, int count, int totalCount){
 		this.value = value;
 		this.count = count;

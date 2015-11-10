@@ -1,7 +1,6 @@
 package org.ift7022.tp3.texts;
 
 import org.ift7022.tp3.ngrams.Ngram;
-import org.ift7022.tp3.ngrams.NgramCounter;
 
 import java.util.HashMap;
 import java.util.Map;
