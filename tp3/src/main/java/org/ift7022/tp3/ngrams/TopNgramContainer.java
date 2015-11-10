@@ -7,45 +7,46 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class TopNgramContainer {
-	
+
 	private static TopNgramContainer instance = null;
-	
-	public static TopNgramContainer getInstance(){
-		if(instance == null){
-			instance = new TopNgramContainer(new InMemoryNgramRepository().findAll());
+	private static NgramRepository repository;
+
+	public static TopNgramContainer getInstance() {
+		if (instance == null) {
+			instance = new TopNgramContainer(repository.findAll());
 		}
-		
+
 		return instance;
 	}
-	
-	Map<String, Integer> container = new HashMap<String, Integer>();
-	
-	public TopNgramContainer(Collection<Ngram> ngrams){
+
+	Map<String[], Integer> container = new HashMap<String[], Integer>();
+
+	public TopNgramContainer(Collection<Ngram> ngrams) {
 		Heap<Ngram> heap = new Heap<Ngram>(new Comparator<Ngram>() {
 			public int compare(Ngram o1, Ngram o2) {
 				return new Double(o1.getLogProbability()).compareTo(new Double(o2.getLogProbability()));
 			}
 		});
-		
-		for(Ngram value : ngrams){
+
+		for (Ngram value : ngrams) {
 			heap.insert(value);
 		}
-		
+
 		Iterator<Ngram> iterator = heap.iterator();
 		Integer rank = 1;
-		
-		while(iterator.hasNext()){
+
+		while (iterator.hasNext()) {
 			container.put(iterator.next().getValue(), rank);
-			rank+=1;
+			rank += 1;
 		}
 	}
-	
-	public boolean isTopWord(String word){
+
+	public boolean isTopWord(String word) {
 		return container.containsKey(word);
 	}
-	
-	public Integer getRank(String word){
+
+	public Integer getRank(String word) {
 		return container.get(word);
 	}
-	
+
 }
