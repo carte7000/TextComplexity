@@ -7,7 +7,6 @@ import org.ift7022.tp3.ngrams.TopNgramContainer;
 public class Text {
 	private static final int MAX_RANK = 5000;
 	private NgramCounter ngramRepository = null;
-	private String text = null;
 	private int maxRank = 0;
 
 	public Text() {
@@ -36,17 +35,15 @@ public class Text {
 	}
 
 	private void initText(String text) {
-		this.text = text;
 		this.maxRank = 0;
 		this.ngramRepository = createNgramRepository();
 	}
 
 	private void updateMaxRank(String word) {
-		if(maxRank < MAX_RANK){
-			if(!TopNgramContainer.getInstance().isTopWord(word)){
+		if (maxRank < MAX_RANK) {
+			if (!TopNgramContainer.getInstance().isTopWord(word)) {
 				maxRank = MAX_RANK;
-			}
-			else{
+			} else {
 				int wordRank = TopNgramContainer.getInstance().getRank(word);
 				if (maxRank < wordRank) {
 					maxRank = wordRank;
@@ -54,6 +51,8 @@ public class Text {
 			}
 		}
 	}
+	
+	
 
 	public int getMaxRank() {
 		return maxRank;
