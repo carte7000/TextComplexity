@@ -6,32 +6,18 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class TopNgramContainer {
-
-	private static TopNgramContainer instance = null;
-	private static NgramRepository repository;
-
-	public static TopNgramContainer getInstance() {
-		if (instance == null) {
-			instance = new TopNgramContainer(repository.findAll());
-		}
-
-		return instance;
-	}
-
+public class TopNgramContainer implements NgramObserver {
 	Map<String[], Integer> container = new HashMap<String[], Integer>();
-
-	public TopNgramContainer(Collection<Ngram> ngrams) {
-		Heap<Ngram> heap = new Heap<Ngram>(new Comparator<Ngram>() {
+	Heap<Ngram> heap;
+	public TopNgramContainer() {
+		heap = new Heap<Ngram>(new Comparator<Ngram>() {
 			public int compare(Ngram o1, Ngram o2) {
 				return new Double(o1.getLogProbability()).compareTo(new Double(o2.getLogProbability()));
 			}
 		});
+	}
 
-		for (Ngram value : ngrams) {
-			heap.insert(value);
-		}
-
+	public void Lock(){
 		Iterator<Ngram> iterator = heap.iterator();
 		Integer rank = 1;
 
@@ -40,13 +26,18 @@ public class TopNgramContainer {
 			rank += 1;
 		}
 	}
-
+	
 	public boolean isTopWord(String word) {
 		return container.containsKey(word);
 	}
 
 	public Integer getRank(String word) {
 		return container.get(word);
+	}
+
+	public void notify(String[] key, long count) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

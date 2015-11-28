@@ -8,8 +8,8 @@ import org.ift7022.tp3.ngrams.NgramRepository;
 
 public class InMemoryNgramCounter implements NgramCounter {
 
-	private int count = 0;
-	private Map<String[], Integer> ngramDict = new HashMap<String[], Integer>();
+	private long count = 0;
+	private Map<String[], Long> ngramDict = new HashMap<String[], Long>();
 
 	public void persist(String[] ngram) {
 		createIfDoNotExists(ngram);
@@ -18,7 +18,7 @@ public class InMemoryNgramCounter implements NgramCounter {
 
 	private void createIfDoNotExists(String[] word) {
 		if (!ngramDict.containsKey(word)) {
-			ngramDict.put(word, 0);
+			ngramDict.put(word, (long) 0);
 		}
 	}
 
@@ -27,7 +27,7 @@ public class InMemoryNgramCounter implements NgramCounter {
 		count += 1;
 	}
 
-	public int getTotalCount() {
+	public Long getTotalCount() {
 		return count;
 	}
 

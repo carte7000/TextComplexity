@@ -10,32 +10,25 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class InMemoryNgramRepository implements NgramRepository {
+public class InMemoryNgramRepository{
 
-	Map<String[], Integer> dict = new HashMap<String[], Integer>();
-	Integer totalCount = 0;
+	Map<String[], Long> dict = new HashMap<String[], Long>();
+	Long totalCount = (long) 0;
 
-	public InMemoryNgramRepository(String pathFile) throws IOException {
-		Path path = Paths.get(pathFile);
-		Iterator<String> iterator = Files.lines(path).iterator();
-		while (iterator.hasNext()) {
-			String line = iterator.next();
-			String[] stringArray = line.split(";");
-			dict.put(new String[] { stringArray[0] }, Integer.parseInt(stringArray[1]));
-			totalCount += Integer.parseInt(stringArray[1]);
-		}
-
+	public InMemoryNgramRepository(String pathFile, Parser parser) {
+		ParseResult result = null;// = parser.parse(pathFile);
+		dict = result.dict;
+		totalCount = result.totalCount;
 	}
 
 	public Ngram getNgram(String[] word) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Ngram(word, dict.get(word), totalCount);
 	}
 
 	public Collection<Ngram> findAll() {
 		Collection<Ngram> result = new ArrayList<Ngram>();
 		for (String[] key : dict.keySet()) {
-			Ngram ngram = new Ngram(key, dict.get(key), totalCount);
+			Ngram ngram = this.getNgram(key);
 			result.add(ngram);
 		}
 		return result;

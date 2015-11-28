@@ -3,10 +3,10 @@ package org.ift7022.tp3.ngrams;
 public class Ngram {
 
 	private String[] value;
-	private int count;
-	private int totalCount;
+	private Long count;
+	private Long totalCount;
 
-	public Ngram(String[] value, int count, int totalCount) {
+	public Ngram(String[] value, Long count, Long totalCount) {
 		this.value = value;
 		this.count = count;
 		this.totalCount = totalCount;
@@ -18,7 +18,7 @@ public class Ngram {
 	}
 
 	public double getLogProbability() {
-		return -1 * Math.log(this.getProbability());
+		return -1 * (Math.log(this.count) - Math.log(totalCount));
 	}
 
 	public double getProbability() {

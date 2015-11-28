@@ -6,7 +6,7 @@ import org.ift7022.tp3.ngrams.NgramRepository;
 public interface NgramCounter {
 	public void persist(String[] word);
 
-	public int getTotalCount();
+	public Long getTotalCount();
 
 	public Ngram getNgram(String[] value);
 
