@@ -77,7 +77,6 @@ public class Text {
 	}
 
 	private void initText(String text) {
-		this.text = text;
 		this.maxRank = 0;
 		this.ngramCounter = createNgramRepository();
 	}
