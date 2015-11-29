@@ -1,7 +1,11 @@
 package org.ift7022.tp3;
 
 import java.io.IOException;
+import java.util.Scanner;
 
+import org.ift7022.tp3.context.ContextBase;
+import org.ift7022.tp3.context.InstantContext;
+import org.ift7022.tp3.context.ServiceLocator;
 import org.ift7022.tp3.ngrams.InMemoryNgramRepository;
 import org.ift7022.tp3.ngrams.NgramRepository;
 import org.ift7022.tp3.ngrams.OpenNlpPosTagger;
@@ -10,6 +14,7 @@ import org.ift7022.tp3.ngrams.PosTagger;
 import org.ift7022.tp3.ngrams.RedisNgramRepository;
 import org.ift7022.tp3.ngrams.TopNgramContainer;
 import org.ift7022.tp3.parsers.NgramParser;
+import org.ift7022.tp3.services.TextService;
 import org.ift7022.tp3.texts.Text;
 
 /**
@@ -20,17 +25,17 @@ public class App
 {
     public static void main( String[] args )
     {
-    	(new FileFetcher()).Download();
-    	OpenNlpPosTagger openNlpTagger = new OpenNlpPosTagger();
-    	Parser parser = new NgramParser();
-    	PosTagger tagger = new GoogleStylePosTagger(new UniversalPosTagger(openNlpTagger, FileFetcher.MAP));
-    	TopNgramContainer topNgramContainer = new TopNgramContainer();
-    	//NgramRepository ngramRepository = new RedisNgramRepository();
-    	//NgramRepository posRepository = new RedisNgramRepository("POS");
-    	NgramRepository ngramRepository = new RedisNgramRepository(FileFetcher.COMPRESSED_1GRAM, parser);
-    	NgramRepository posRepository = new RedisNgramRepository(FileFetcher.COMPRESSED, parser, "POS");
-    	Text text = new Text(topNgramContainer, ngramRepository, posRepository, tagger);
-    	text.updateText("I am a blue and grey dog and i like it. House House House House screamed Bob. 203 want Bob and 202. Want want want a do.");    	
-        System.out.println(text.getPosPerplexity());
+    	ContextBase context = new InstantContext();
+    	context.apply();
+    	TextService service = ServiceLocator.getInstance().resolve(TextService.class);
+    	System.out.println(service.getStatistic("I'm a big big dog in his big big van.").toString());
+    	
+    	/*Scanner reader = new Scanner(System.in);  // Reading from System.in
+    	String command = "";
+    	while(command != "exit"){
+    		System.out.println("Enter a text: ");
+    		command = reader.next();
+    		System.out.println(service.getStatistic(command).toString());
+    	}*/
     }
 }
