@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.ift7022.tp3.FileFetcher;
+
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSSample;
 import opennlp.tools.postag.POSTaggerME;
@@ -20,7 +22,7 @@ public class OpenNlpPosTagger implements PosTagger{
 		POSModel model = null;
 		
 		try {
-		  modelIn = new FileInputStream("/home/manshow7000/Downloads/Ngram/en-pos-maxent.bin");
+		  modelIn = new FileInputStream(FileFetcher.POS_MODEL);
 		  model = new POSModel(modelIn);
 		}
 		catch (IOException e) {

@@ -1,5 +1,7 @@
 package org.ift7022.tp3;
 
+import java.io.IOException;
+
 import org.ift7022.tp3.ngrams.InMemoryNgramRepository;
 import org.ift7022.tp3.ngrams.NgramRepository;
 import org.ift7022.tp3.ngrams.OpenNlpPosTagger;
@@ -18,9 +20,10 @@ public class App
 {
     public static void main( String[] args )
     {
+    	(new FileFetcher()).Download();
     	OpenNlpPosTagger openNlpTagger = new OpenNlpPosTagger();
     	Parser parser = new NgramParser();
-    	PosTagger tagger = new GoogleStylePosTagger(new UniversalPosTagger(openNlpTagger, "/home/manshow7000/Downloads/Ngram/map.map"));
+    	PosTagger tagger = new GoogleStylePosTagger(new UniversalPosTagger(openNlpTagger, FileFetcher.MAP));
     	TopNgramContainer topNgramContainer = new TopNgramContainer();
     	NgramRepository ngramRepository = new RedisNgramRepository();
     	NgramRepository posRepository = new RedisNgramRepository("POS");

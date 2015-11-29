@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.text.html.parser.DocumentParser;
 
+import org.ift7022.tp3.FileFetcher;
 import org.ift7022.tp3.SentenceTokenizer;
 import org.ift7022.tp3.ngrams.NgramRepository;
 import org.ift7022.tp3.ngrams.PosTagger;
@@ -49,7 +50,7 @@ public class Text {
 			indexWord(tokenizer.nextToken());
 		}
 		
-		String[] sentences = (new SentenceTokenizer("/home/manshow7000/Downloads/Ngram/da-sent.bin")).sentTokenize(text);
+		String[] sentences = (new SentenceTokenizer(FileFetcher.SENTENCE_MODEL)).sentTokenize(text);
 		for(String sentence : sentences){
 			indexPos(sentence);
 		}
@@ -78,6 +79,7 @@ public class Text {
 
 	private void initText(String text) {
 		this.maxRank = 0;
+		this.text=text;
 		this.ngramCounter = createNgramRepository();
 	}
 

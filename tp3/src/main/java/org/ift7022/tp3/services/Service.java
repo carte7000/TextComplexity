@@ -3,15 +3,15 @@ package org.ift7022.tp3.services;
 import javax.ws.rs.core.Response;
 
 import org.ift7022.tp3.texts.Text;
-import org.ift7022.tp3.texts.TextCache;
+//import org.ift7022.tp3.texts.TextCache;
 
 public class Service implements ServiceHandler {
 
-	private TextCache textCache;
+	//private TextCache textCache;
 	private Text text;
 
 	public Response analyzeComplexityText(ComplexityTextDTO complexityTextDTO) {
-		textCache.persist(complexityTextDTO);
+		//textCache.persist(complexityTextDTO);
 		text.updateText(complexityTextDTO.content);
 		int maxRank = text.getMaxRank();
 
@@ -21,6 +21,8 @@ public class Service implements ServiceHandler {
 			return Response.ok().entity(complexityResult).build();
 
 		}
+		
+		return null;
 
 	}
 
