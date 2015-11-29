@@ -23,6 +23,12 @@ import com.datumbox.framework.utilities.text.extractors.NgramsExtractor;
  */
 public class TextClassification {
 
+	private String text;
+
+	public TextClassification(String text) {
+		this.text = text;
+	}
+
 	/**
 	 * Example of how to use the TextClassifier class.
 	 * 
@@ -30,11 +36,10 @@ public class TextClassification {
 	 *            the command line arguments
 	 * @throws java.net.URISyntaxException
 	 */
-	public static void main(String[] args) throws URISyntaxException {
+	public String classify() throws URISyntaxException {
 		/**
-		 * There are two configuration files in the resources folder:
-		 * 
-		 * - datumbox.config.properties: It contains the configuration for the
+		 * There are two configuration files in the resources folder: tr -
+		 * datumbox.config.properties: It contains the configuration for the
 		 * storage engines (required) - logback.xml: It contains the
 		 * configuration file for the logger (optional)
 		 */
@@ -55,10 +60,10 @@ public class TextClassification {
 		// category are stored on
 		// the same file, one
 		// example per row.
-		dataset.put("positive", TextClassification.class.getClassLoader()
-				.getResource("datasets/sentiment-analysis/rt-polarity.pos").toURI());
-		dataset.put("negative", TextClassification.class.getClassLoader()
-				.getResource("datasets/sentiment-analysis/rt-polarity.neg").toURI());
+		dataset.put("complicated", TextClassification.class.getClassLoader()
+				.getResource("datasets/text-complexity/scientific-articles.train").toURI());
+		dataset.put("not complicated", TextClassification.class.getClassLoader()
+				.getResource("datasets/text-complexity/simple-articles.train").toURI());
 
 		// Setup Training Parameters
 		// -------------------------
@@ -94,10 +99,9 @@ public class TextClassification {
 												// future reference
 
 		// Classify a single sentence
-		String sentence = "Datumbox is amazing!";
-		Record r = classifier.predict(sentence);
-
-		System.out.println("Classifing sentence: \"" + sentence + "\"");
+		Record r = classifier.predict(text);
+		String predicted = (String) (r.getYPredicted());
+		System.out.println("Classifing sentence: \"" + text + "\"");
 		System.out.println("Predicted class: " + r.getYPredicted());
 		System.out.println("Probability: " + r.getYPredictedProbabilities().get(r.getYPredicted()));
 
@@ -108,6 +112,7 @@ public class TextClassification {
 
 		// Erase the classifier. This removes all files.
 		classifier.erase();
+		return predicted;
 	}
 
 }
