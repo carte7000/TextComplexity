@@ -16,11 +16,11 @@ public class TextService {
 
 	public Statistic getStatistic(String text) throws URISyntaxException {
 		Text textObj = textFactory.create();
-		// textObj.updateText(text);
+		textObj.updateText(text);
 		Statistic statistic = new Statistic();
 		TextClassification textClassification = new TextClassification(text);
-		// statistic.wordPerplexity = textObj.getPerplexity();
-		// statistic.posPerplexity = textObj.getPosPerplexity();
+		statistic.wordPerplexity = textObj.getPerplexity();
+		statistic.posPerplexity = textObj.getPosPerplexity();
 		statistic.typeClass = textClassification.classify();
 		return statistic;
 	}

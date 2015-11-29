@@ -9,6 +9,8 @@ import org.apache.commons.io.FileUtils;
 
 public class FileFetcher {
 	
+	public static final String SIMPLE_TRAIN = "simple.train";
+	public static final String SCIENTIFIC_TRAIN = "scientific.train";
 	public static final String POS_MODEL = "en-pos-maxent.bin";
 	public static final String SENTENCE_MODEL = "da-sent.bin";
 	public static final String COMPRESSED_1GRAM = "compressed_1gram.csv";
@@ -21,6 +23,8 @@ public class FileFetcher {
 		UrlToFile("https://s3.amazonaws.com/text-complexity/compressed_1gram.csv", COMPRESSED_1GRAM);
 		UrlToFile("https://s3.amazonaws.com/text-complexity/da-sent.bin", SENTENCE_MODEL);
 		UrlToFile("https://s3.amazonaws.com/text-complexity/en-pos-maxent.bin", POS_MODEL);
+		UrlToFile("https://s3.amazonaws.com/text-complexity/scientific-articles.train", SCIENTIFIC_TRAIN);
+		UrlToFile("https://s3.amazonaws.com/text-complexity/simple-articles.train", SIMPLE_TRAIN);
 		System.out.println("All files are downloaded.");
 	}
 	

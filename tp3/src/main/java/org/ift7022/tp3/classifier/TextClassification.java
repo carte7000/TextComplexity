@@ -1,9 +1,12 @@
 package org.ift7022.tp3.classifier;
 
+import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.ift7022.tp3.FileFetcher;
 
 import com.datumbox.applications.nlp.TextClassifier;
 import com.datumbox.common.dataobjects.Record;
@@ -60,10 +63,9 @@ public class TextClassification {
 		// category are stored on
 		// the same file, one
 		// example per row.
-		dataset.put("complicated", TextClassification.class.getClassLoader()
-				.getResource("datasets/text-complexity/scientific-articles.train").toURI());
-		dataset.put("not complicated", TextClassification.class.getClassLoader()
-				.getResource("datasets/text-complexity/simple-articles.train").toURI());
+		
+		dataset.put("complicated", (new File(FileFetcher.SCIENTIFIC_TRAIN)).toURI());
+		dataset.put("not complicated", (new File(FileFetcher.SIMPLE_TRAIN)).toURI());
 
 		// Setup Training Parameters
 		// -------------------------
