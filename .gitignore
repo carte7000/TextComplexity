@@ -1,0 +1,6 @@
+target/
+tp3/compressed.csv
+tp3/compressed_1gram.csv
+tp3/da-sent.bin
+tp3/en-pos-maxent.bin
+tp3/map.map
