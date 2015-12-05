@@ -2,6 +2,7 @@ package org.ift7022.tp3;
 
 import java.net.URISyntaxException;
 
+import org.ift7022.tp3.context.BuildContext;
 import org.ift7022.tp3.context.ContextBase;
 import org.ift7022.tp3.context.InstantContext;
 import org.ift7022.tp3.context.ServiceLocator;
@@ -13,11 +14,11 @@ import org.ift7022.tp3.services.TextService;
  */
 public class App {
 	public static void main(String[] args) {
-		ContextBase context = new InstantContext();
+		ContextBase context = new BuildContext();
 		context.apply();
 		TextService service = ServiceLocator.getInstance().resolve(TextService.class);
 		try {
-			System.out.println(service.getStatistic("I'm a big big dog in his big big van.").toString());
+			System.out.println(service.getStatistic("This statistical function have a uberly huge perplexity.").toString());
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}

@@ -1,5 +1,7 @@
 package org.ift7022.tp3.context;
 
+import java.io.IOException;
+
 import org.ift7022.tp3.FileFetcher;
 import org.ift7022.tp3.GoogleStylePosTagger;
 import org.ift7022.tp3.TextFactory;
@@ -13,10 +15,15 @@ import org.ift7022.tp3.ngrams.TopNgramContainer;
 import org.ift7022.tp3.parsers.NgramParser;
 import org.ift7022.tp3.services.TextService;
 
+import redis.embedded.RedisServer;
+
 public class InstantContext extends ContextBase {
 
 	@Override
 	protected void registerServices() {
+		
+		startEmbeddedRedisServer();
+		
 		(new FileFetcher()).Download();
     	OpenNlpPosTagger openNlpTagger = new OpenNlpPosTagger();
     	PosTagger tagger = new GoogleStylePosTagger(new UniversalPosTagger(openNlpTagger, FileFetcher.MAP));
@@ -27,6 +34,17 @@ public class InstantContext extends ContextBase {
     	ServiceLocator.getInstance().register(TextFactory.class, factory);
     	TextService service = new TextService(factory);
     	ServiceLocator.getInstance().register(TextService.class, service);
+	}
+
+	private void startEmbeddedRedisServer() {
+		RedisServer redisServer = null;
+		try {
+			redisServer = new RedisServer(6379);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		redisServer.start();
 	}
 
 	@Override
