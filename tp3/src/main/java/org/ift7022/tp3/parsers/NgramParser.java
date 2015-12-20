@@ -37,6 +37,7 @@ public class NgramParser implements Parser {
 				}
 			}
 			catch(Exception ex){
+				System.out.println("Writing to log");
 				try
 				{
 				    String filename= "log.csv";
