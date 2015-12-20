@@ -52,6 +52,7 @@ public class Text {
 		
 		String[] sentences = (new SentenceTokenizer(FileFetcher.SENTENCE_MODEL)).sentTokenize(text);
 		for(String sentence : sentences){
+			System.out.println("POS: "+ sentence);
 			indexPos(sentence);
 		}
 	}
@@ -63,13 +64,15 @@ public class Text {
 			words.add(tokenizer.nextToken());
 		}
 		int i = 0;
+		
 		String[] pos = posTagger.tag(words.toArray(new String[words.size()]));
-		while(i < words.size()-5){
+		
+		while(i < pos.length-5){
 			posCounter.persist(Arrays.copyOfRange(pos, i, i+5));
 			i++;
 		}
 		pos = null;
-		System.gc();
+		//System.gc();
 	}
 
 	private void indexWord(String word) {

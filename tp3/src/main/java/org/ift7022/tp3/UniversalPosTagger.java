@@ -18,7 +18,7 @@ public class UniversalPosTagger implements PosTagger {
 	private Map<String, String> dict = new HashMap<String, String>();
 	private PosTagger internalPosTagger = null;
 	
-	public UniversalPosTagger(OpenNlpPosTagger openNlpTagger, String mapFile) {
+	public UniversalPosTagger(PosTagger openNlpTagger, String mapFile) {
 		this.internalPosTagger = openNlpTagger;
 		buildDict(mapFile);
 	}

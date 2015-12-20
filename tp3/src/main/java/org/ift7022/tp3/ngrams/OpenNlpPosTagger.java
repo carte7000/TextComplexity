@@ -42,7 +42,10 @@ public class OpenNlpPosTagger implements PosTagger{
 	}
 	
 	public String[] tag(String[] sentence) {
-		return tagger.tag(sentence);
+		System.out.println("Pos tag");
+		String[] result =  tagger.tag(sentence);
+		System.out.println("Finish");
+		return result;
 	}
 
 }

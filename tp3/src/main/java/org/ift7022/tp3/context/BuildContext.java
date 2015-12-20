@@ -11,6 +11,7 @@ import org.ift7022.tp3.ngrams.OpenNlpPosTagger;
 import org.ift7022.tp3.ngrams.Parser;
 import org.ift7022.tp3.ngrams.PosTagger;
 import org.ift7022.tp3.ngrams.RedisNgramRepository;
+import org.ift7022.tp3.ngrams.StandfordNlpPosTagger;
 import org.ift7022.tp3.ngrams.TopNgramContainer;
 import org.ift7022.tp3.parsers.NgramParser;
 import org.ift7022.tp3.services.TextService;
@@ -22,12 +23,13 @@ public class BuildContext extends ContextBase{
 	@Override
 	protected void registerServices() {
 		
-		startEmbeddedRedisServer();
+		//startEmbeddedRedisServer();
 		
 		(new FileFetcher()).Download();
     	OpenNlpPosTagger openNlpTagger = new OpenNlpPosTagger();
     	Parser parser = new NgramParser();
-    	PosTagger tagger = new GoogleStylePosTagger(new UniversalPosTagger(openNlpTagger, FileFetcher.MAP));
+    	StandfordNlpPosTagger standfordNlpPosTagger = new StandfordNlpPosTagger();
+    	PosTagger tagger = new GoogleStylePosTagger(new UniversalPosTagger(standfordNlpPosTagger, FileFetcher.MAP));
     	TopNgramContainer topNgramContainer = new TopNgramContainer();
     	NgramRepository ngramRepository = new RedisNgramRepository(FileFetcher.COMPRESSED_1GRAM, parser);
     	NgramRepository posRepository = new RedisNgramRepository(FileFetcher.COMPRESSED, parser, "POS");
@@ -40,11 +42,11 @@ public class BuildContext extends ContextBase{
 		RedisServer redisServer = null;
 		try {
 			redisServer = new RedisServer(6379);
+			redisServer.start();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		redisServer.start();
 	}
 
 	@Override

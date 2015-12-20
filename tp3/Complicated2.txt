@@ -1,0 +1,15 @@
+ And if it's viral it turns on the meta-virus signature response. And then it asks, 'If it's viral, which virus is it?' And then it turns on a specialized response for that virus."
+
+Theoretically, the meta-virus signature could be used clinically to distinguish viral from bacterial infections to determine if an antibiotic should be prescribed. The Khatri lab has funding to develop such a test.
+
+The team's work is an example of Stanford Medicine's focus on precision health, the goal of which is to anticipate and prevent disease in the healthy and precisely diagnose and treat disease in the ill.
+
+Is the vaccine working?
+
+The work can also help determine whether someone is responding to vaccination. "The goal of vaccination is to generate the same immune response without the symptoms," he said. "If the IMS response is truly virus-specific, we should see the same response in vaccination." And, in fact, the Khatri team found that in three independent studies of flu vaccine recipients, all those judged to have responded to vaccination by other measures also displayed the 11-gene influenza meta-signature. Likewise, nonrespondents showed no influenza meta-signature response. In short, if you see the gene expression signature, you know the person is responding to the vaccine.
+
+Until now, said Khatri, no one has found the immune response that turns on in both the vaccination response and in actual infections. This paper demonstrates for the first time a "transcriptional signature" that can be used as a proxy for whatever immune mechanism is induced by both vaccination and infection. "We have identified the common signature that links infection and vaccination," he said.
+
+The work on the vaccination response also added to the understanding of men's immune response, which is different from women's. Other research has suggested that men's immune response to vaccines was somehow suppressed. In previous work, researchers looked at men's and women's responses on the third day after vaccination, when women had a strong reaction and men had none. But Khatri's group found that men were responding most on the first day after vaccination. In other words, men were responding to flu vaccine sooner than women. By the third day, men's immune response returned to baseline. "The dynamics are different," he said, "and we haven't been sampling at the right time."
+
+The Stanford paper also looked at samples from patients with acute pneumonia. In these patients, the influenza meta-signature distinguished viral pneumonia from bacterial pneumonia. As patients recovered, their influenza meta-signatures gradually returned to a healthy baseline level. "So you can also use IMS to monitor patients' progress," said Khatri.
